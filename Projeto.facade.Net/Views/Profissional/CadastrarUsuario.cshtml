@@ -1,0 +1,130 @@
+﻿@{
+    ViewBag.Title = "Cadastrar Usuário";
+    ViewBag.Cabecalho = "Cadastrar Usuário";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model Crud_Facade_Modelos.Web.ViewModel.AlterarOuSalvarUsuarioView
+@{var auxiliar = Model;}
+@if (Model == null)
+{
+    auxiliar = new Crud_Facade_Modelos.Web.ViewModel.AlterarOuSalvarUsuarioView();
+    auxiliar.ActionDestino = "/Profissional/CadastrarUsuario";
+}
+@if (auxiliar.ActionDestino == "/Profissional/AlterarUsuario")
+{
+    ViewBag.Cabecalho = ViewBag.Title = "Alterar Usuário";
+}
+
+<!DOCTYPE html>
+
+
+
+<html aria-atomic="false">
+
+<head>
+
+
+    <script src="~/Scripts/TabelaDinamica.js"></script>
+    <script>
+        RegistrarTabela("GridOrgaos");
+        @{string indexer = "@index";}
+        adicionarCampo('GridOrgaos', '<input type="text" id="CodigoOuSigla@index" ' +
+            'name="CodigoOuSigla[@indexer]"/> ' + '<input type="button" onclick="remover(\'GridOrgaos\',' +
+           @Html.Raw("'@index'") + ');" value= "-"/>',
+             'CodigoOuSigla@index');
+
+        definirFoco('GridOrgaos', 'CodigoOuSigla@index');
+        DefinirCampoDeQuantidade('GridOrgaos', 'QtdeOrgaos');
+        DefinirLinhasExtras('GridOrgaos', 1, 1);
+
+        $(document).ready(function () {
+            document.getElementById("CodigoUsuario").focus();
+        });
+
+    </script>
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+
+    <div id="GridRetorno" class="mensagemErro">
+        @ViewBag.Mensagem
+    </div>
+
+    <form action="@auxiliar.ActionDestino" method="post">
+
+        <h1>@ViewBag.Cabecalho</h1>
+
+        <p>
+            <label for="CodigoUsuario" class="formulario" style="width: 103px !important"><b>Usuário:</b></label>
+            <input id="CodigoUsuario" name="CodigoUsuario" value="@auxiliar.CodigoUsuario" type="text" size="64" maxlength="10" />
+        </p>
+
+        <p>
+            <label for="Nome" class="formulario" style="width: 103px !important"><b>Nome do Usuário:</b></label>
+            <input name="Nome" value="@auxiliar.Nome" type="text" size="64" maxlength="100" />
+        </p>
+
+
+
+        <input type="hidden" name="QtdeOrgaos" id="QtdeOrgaos" value="1" />
+
+
+        Órgaos que o usuário trabalha (o primeiro é o padrão):
+        <table id="GridOrgaos">
+            <thead>
+                <tr>
+                    <th>Código Ou Sigla</th>
+                </tr>
+            </thead>
+
+
+            @if (auxiliar.CodigoOuSigla == null || auxiliar.CodigoOuSigla.Count == 0)
+            {
+                auxiliar.CodigoOuSigla = new List<string>();
+                auxiliar.CodigoOuSigla.Add("");
+
+            }
+            @for (int i = 0; i < auxiliar.CodigoOuSigla.Count; i++)
+            {
+                <tbody>
+                    <tr>
+                        <td>
+                            <input type="text"
+                                   id="CodigoOuSigla"
+                                   name="CodigoOuSigla[@i]"
+                                   value="@auxiliar.CodigoOuSigla[i]" />
+                            <input type="button" onclick="remover('GridOrgaos',@i);" value="-" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: end">
+                            <input type="button" value=" + "
+                                   onclick="adicionarLinha('GridOrgaos');">
+                        </td>
+                    </tr>
+                </tbody>
+            }
+        </table>
+
+        <input type="submit" value=" Salvar " />
+
+
+
+
+    </form>
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

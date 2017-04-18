@@ -1,0 +1,294 @@
+﻿@{
+    ViewBag.Title = "Cadastrar Aplicativo";
+    ViewBag.Cabecalho = "Cadastrar Aplicativo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model Crud_Facade_Modelos.Web.ViewModel.AlterarOuSalvarAplicativoView
+@{var auxiliar = Model;}
+@if (Model == null)
+{
+    auxiliar = new Crud_Facade_Modelo.Web.ViewModel.AlterarOuSalvarAplicativoView();
+    auxiliar.ActionDestinos = "/Aplicativo/CadastrarAplicativo";
+}
+@if (auxiliar.ActionDestinos == "/Aplicativo/AlterarAplicativo")
+{
+    ViewBag.Cabecalho = ViewBag.Title = "Alterar Aplicativo";
+}
+
+<!DOCTYPE html>
+
+<h2>CadastrarAplicativo</h2>
+
+<html aria-atomic="False">
+
+<head>
+    <script src="~/Scripts/TabelaDinamica.js"></script>
+    <script>
+        @{string index = "@index"; }
+        RegistrarTabela('GridMenus');
+        adicionarCampo('GridMenus', '<span id="TituloMenu@index">Menu <b>@Html.Raw("@index")</b>: ' +
+                                        '&nbsp;</span>', 'TituloMenu@index');
+        adicionarCampo('GridMenus', '<input type="text" id="NomeMenu@index" name="Menus[@index].Nome" />',
+                                     'NomeMenu@index');
+        adicionarCampo('GridMenus', '<input type="text" id="DescricaoMenu@index" ' +
+                         'name="Menus[@index].Descricao" /> ' +
+                         '<input type="button" onclick="remover(\'GridMenus\', ' +
+                         @Html.Raw("'@index'") + ');' +
+                            ' remover(\'SubMenus\', @Html.Raw("\\'@index\\'")); " value=" - " />',
+                            'DescricaoMenu@index');
+        definirFoco('GridMenus', 'NomeMenu@index');
+        DefinirCampoDeQuantidade('GridMenus', 'QtdeMenus');
+
+
+        RegistrarTabela('SubMenus');
+        adicionarCampo('SubMenus', '<table id="GridSubmen@index"><tr><th colspan="3">SubMenus ' +
+                             'Do Menu ' + @Html.Raw("'@index'") +
+                                '<input type="hidden" name="QtdeSubmenus@index" id="QtdeSubmenus@index">' +
+                                '</th>' +
+                                '</tr><tr><th>Nome</th><th>Descrição</th><th>Action</th></tr>' +
+                                '<tr><td><input type="text" id="Nom_subMen@index0" ' +
+                                'name="Menus[@Html.Raw("@index")].SubMenus[0].Nome" /></td>' +
+                                '<td><input type="text" id="des_submen@index0" ' +
+                                'name="Menus[@Html.Raw("@index")].SubMenus[0].Descricao" /></td>' +
+                                '<td><input type="text" id="nom_proced_SubMen@index0" ' +
+                                'name="Menus[@Html.Raw("@index")].SubMenus[0].ActionSubMenu" /> ' +
+                                '<input type="button" onclick="remover(\'GridSubmen@index\', 0)" ' +
+                                'value=" - " />' +
+                                '</td>' +
+                                '</tr><tr><td colspan="3" style="text-align: end">' +
+                                '<input type="button" value=" + " onclick="adicionarLinha(\'' +
+                                'GridSubmen@index\');"></td></tr></table>',
+                                'GridSubmen@index Nom_subMen@index0 des_submen@index0 nom_proced_SubMen@index0');
+        DefinirLinhasExtras('SubMenus', 1, 0);
+
+
+
+
+        function associarSubMenus() {
+            var tamanho = adicionarLinha('SubMenus');
+            RegistrarSubMenu();
+
+        }
+
+        function RegistrarSubMenu() {
+            var tbSubMenus = document.getElementById('SubMenus');
+            var index = tbSubMenus.rows.length - tabelas['SubMenus'].LinhasExtrasAbaixo -
+                                                 tabelas['SubMenus'].LinhasExtrasAcima - 1;
+            var NomeTabela = 'GridSubmen' + index;
+
+            RegistrarTabela(NomeTabela);
+            adicionarCampo(NomeTabela, '<input type="text" id="Nom_subMen' + index +
+                @Html.Raw("'@index'") + '" name="Menus[' + index + '].SubMenus[' +
+                @Html.Raw("'@index'") + '].Nome" />', 'Nom_subMen' + index + '@Html.Raw("@index")');
+            adicionarCampo(NomeTabela, '<input type="text" id="des_submen' + index +
+                @Html.Raw("'@index'") + '" name="Menus[' + index + '].SubMenus[' +
+                @Html.Raw("'@index'") + '].Descricao" />', 'des_submen' + index + '@Html.Raw("@index")');
+            adicionarCampo(NomeTabela, '<input type="text" id="nom_proced_SubMen' + index
+                + @Html.Raw("'@index'") +'" name="Menus[' + index + '].SubMenus['
+                + @Html.Raw("'@index'") + '].ActionSubMenu" /> ' +
+                '<input type="button" onclick="remover(\'GridSubmen' + index +
+                    '\',' + @Html.Raw("'@index'") +'); " value=" - " />',
+                'nom_proced_SubMen' + index + '@Html.Raw("@index")');
+
+            definirFoco(NomeTabela, 'Nom_subMen' + index + @Html.Raw("'@index'") + '');
+            DefinirCampoDeQuantidade(NomeTabela, 'QtdeSubmenus' + index);
+            DefinirLinhasExtras(NomeTabela, 2, 1);
+        }
+
+        $(document).ready(function () {
+            document.getElementById("NomeAplicacao").focus();
+            RegistrarSubMenu();
+        });
+
+    </script>
+    <title>@ViewBag.Title</title>
+</head>
+
+<body>
+
+
+    <div id="GridRetorno" class="mensagemErro">
+
+        @ViewBag.Mensagem
+    </div>
+
+    <div style="height: 50px;"></div>
+
+    <form action="@auxiliar.ActionDestinos" method="post">
+
+        <h1>@ViewBag.Cabecalho</h1>
+
+        <p>
+            <label for="NomeAplicacao" class="formulario"><b>Código de Aplicação:</b></label>
+            <input type="text" id="NomeAplicacao" name="NomeAplicacao" value="@auxiliar.NomeAplicacao" size="64" maxlength="10" />
+        </p>
+
+        <p>
+            <label for="Descricao" class="formulario"><b>Descriçao:</b></label>
+            <input type="text" name="Descricao" size="64" value="@auxiliar.Descricao" />
+        </p>
+
+        <p>
+            <label for="DescricaoSintetica" class="formulario"><b>Descriçao Sintética:</b></label>
+            <input type="text" name="DescricaoSintetica" style="text-align: left" size="64" value="@auxiliar.DescricaoSintetica" />
+        </p>
+
+        <p>
+            <label for="Versao" class="formulario"><b>Versão:</b></label>
+            <input type="text" name="Versao" style="text-align: left" size="64" value="@auxiliar.Versao" />
+        </p>
+
+        <p>
+            <label for="URLDeExecucao" class="formulario"><b>URL de execucão:</b></label>
+            <input type="text" name="URLDeExecucao" style="text-align: left" size="64" value="@auxiliar.URLDeExecucao" />
+        </p>
+
+        <p>
+            <label for="Plataforma" class="formulario"><b>Plataforma:</b></label>
+            <select name="Plataforma">
+                <option value="W" selected>Web</option>
+                <option value="D">Desktop</option>
+            </select>
+        </p>
+
+        <p>
+            <label for="URLDeLogoff" class="formulario"><b>URL de Logoff:</b></label>
+            <input type="text" name="URLDeLogoff" style="text-align: left" size="64" value="@auxiliar.URLDeLogoff" />
+        </p>
+
+        <input type="hidden" id="QtdeMenus" name="QtdeMenus" value="1" />
+
+        <table id="GridMenus">
+            <thead>
+
+                <tr>
+                    <th></th>
+                    <th>Nome</th>
+                    <th>Descricao</th>
+                </tr>
+            </thead>
+            @if (auxiliar.Menus == null)
+            {
+                auxiliar.Menus = new List<Crud_Facade_Modelo.Web.Menu>();
+                auxiliar.Menus.Add(new Crud_Facade_Modelo.Web.Menu());
+            }
+            @for (int i = 0; i < auxiliar.Menus.Count; i++)
+            {
+                <tr>
+                    <td>
+                        <span id="TituloMenu">Menu<b> @i</b>: &nbsp;</span>
+                    </td>
+                    <td>
+                        <input type="text"
+                               id="NomeMenu0"
+                               name="Menus[@i].Nome"
+                               Value="@auxiliar.Menus[i].Nome" />
+
+                    </td>
+                    <td>
+                        <input type="text"
+                               id="DescricaoMenu0"
+                               name="Menus[@i].Descricao"
+                               Value="@auxiliar.Menus[i].Descricao" />
+                        <input type="button" onclick="remover('GridMenus',@i); remover('SubMenus', @i)" value=" - " />
+                    </td>
+                </tr>
+
+            }
+            <tr>
+                <td colspan="3" style="text-align: end">
+                    <input type="button" value=" + "
+                           onclick="adicionarLinha('GridMenus'); associarSubMenus();">
+                </td>
+            </tr>
+        </table>
+
+        <table id="SubMenus" border="1">
+            <tr>
+                <th>Submenus</th>
+            </tr>
+
+            @if (auxiliar.Menus == null)
+            {
+
+                auxiliar.Menus = new List<Crud_Facade_Modelo.Web.Menu>();
+                auxiliar.Menus.Add(new Crud_Facade_Modelo.Web.Menu());
+            }
+            @for (int i = 0; i < auxiliar.Menus.Count; i++)
+            {
+
+                <tr>
+                    <td>
+                        <table id="@Html.Raw("GridSubmen" + i)">
+                            <tr>
+                                <th colspan="3">
+                                    SubMenus Do Menu @i
+                                    <input type="hidden" id="@Html.Raw("QtdeSubmenus" + i)"
+                                           name="@Html.Raw("QtdeSubmenus" + i)" />
+                                </th>
+                            </tr>
+                            <tr>
+                                <th>Nome</th>
+                                <th>Descrição</th>
+                                <th>Action</th>
+                            </tr>
+
+                            @if (auxiliar.Menus[i].SubMenus == null)
+                            {
+                                auxiliar.Menus[i].SubMenus = new List<Crud_Facade_Modelo.Web.SubMenu>();
+                                auxiliar.Menus[i].SubMenus.Add(new Crud_Facade_Modelo.Web.SubMenu());
+                            }
+
+                            @for (int j = 0; j < auxiliar.Menus[i].SubMenus.Count; j++)
+                            {
+
+                                <tr>
+                                    <td>
+                                        <input type="text" id="Nom_subMen"
+                                               name="Menus[@i].SubMenus[@j].Nome"
+                                               Value="@auxiliar.Menus[i].SubMenus[j].Nome" />
+                                    </td>
+                                    <td>
+                                        <input type="text" id="des_submen"
+                                               name="Menus[@i].SubMenus[@j].Descricao"
+                                               Value="@auxiliar.Menus[i].SubMenus[j].Descricao" />
+                                    </td>
+                                    <td>
+                                        <input type="text" id="nom_proced_SubMen"
+                                               name="Menus[@i].SubMenus[@j].ActionSubMenu"
+                                               Value="@auxiliar.Menus[i].SubMenus[j].ActionSubMenu" />
+
+                                        <input type="button" onclick="remover(@Html.Raw("'GridSubmen" + i + "'"), @j)"
+                                               value=" - " />
+
+                                    </td>
+
+                                </tr>
+                            }
+                            <tr>
+
+                                <td colspan="3" style="text-align: end">
+                                    <input type="button" value=" + " onclick="adicionarLinha(@Html.Raw("'GridSubmen" + i + "'"));">
+                                </td>
+
+                            </tr>
+
+                        </table>
+
+                    </td>
+
+                </tr>
+            }
+
+
+
+        </table>
+
+        <br />
+
+        <input type="submit" value=" Salvar " />
+    </form>
+
+</body>
+
+</html>

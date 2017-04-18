@@ -1,0 +1,1237 @@
+﻿html, body {
+    height: 100%;
+}
+
+
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    /*background: url("/Content/Images/FundoLogo.jpg") repeat-x scroll 0 0 transparent;*/
+    color: #222;
+    font-family: "Helvetica Neue",Arial,Helvetica,sans-serif;
+    font-size: 75%;
+    line-height: 1.5;
+}
+
+.bodyLogin {
+  background-color: #F7F7F7;
+  text-align: center;
+  color: #333333;
+  margin: 0;
+  padding: 0;
+  margin-top: 0px;
+}
+
+#logo
+{
+    background: url("/Content/Images/bannerTRF3.png") no-repeat;
+    width: 960px;
+    height: 100px;
+    position: relative;
+    float: none;
+    /*border-bottom: 1px solid #CCCCCC;*/
+    border-radius: 0 0 10px 0;
+    /* font: 11px Verdana,Arial,Helvetica,sans-serif; */
+    color: #40668B;
+    display: block;
+    font-size: 12px;
+    margin: 0 auto 8px;
+    text-align: right;
+}
+
+#principal
+{
+    background: none repeat scroll 0 0 #f5f5f5; /*#e1e2e3;*/ /*#c3d9ff;*/
+    margin: 0 auto;
+    /*min-height: 64%;*/
+    position: relative;
+    width: 960px;
+    clear: left;
+}
+
+#usuarioLogado
+{
+    margin: 68px 0 0 0;
+    text-align: right;
+    width: 100%;
+}
+
+#cabecalho {
+    border-bottom: 1px solid #d5d5d5;
+    clear: both;
+    height: 30px;
+    margin: 0 auto 10px;
+    overflow: hidden;
+    padding: 0;
+    position: relative;
+    width: 960px;
+}
+
+#conteudo {
+    float: left;
+    margin-bottom: 20px;
+    width: 788px;
+}
+
+
+
+/*Menu Esquerdo
+-------------------------------------------------------*/
+#menu
+{
+    -moz-border-bottom-colors: none;
+    -moz-border-image: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    border-color: #CCCCCC;
+    border-style: solid;
+    border-width: 0 1px 0 0;
+    color: #666666;
+    float: left;
+    margin: 1px 0 0 0;
+    min-height: 475px;
+    height: 100%;
+    position: relative;
+    text-align: left;
+    padding: 0;
+    width: 157px; /* 175px; */
+    display: block;
+    border: none;
+    margin-right: 15px;
+}
+
+#menu a
+{
+    text-decoration: none;
+    voice-family: inherit;
+    background: url("/Content/Images/bg_menu.gif") repeat scroll 0 0 #FFFFFF;
+    color: #26370A;
+    display: block;
+    padding: 6px 0 6px 5px;
+    text-shadow: 1px 1px 0 #FFFFFF;
+}
+
+#menu a:link, #menu a:visited
+{
+    color: #26370A;
+    display: block;
+    text-decoration: none;
+    voice-family: inherit;
+    background: url("/Content/Images/bg_menu.gif") repeat scroll 0 0 #FFFFFF;
+    color: #26370A;
+    display: block;
+    padding: 6px 0 6px 5px;
+    text-shadow: 1px 1px 0 #FFFFFF;
+}
+
+
+#menu a:hover, #menu a:active
+{
+    -moz-border-bottom-colors: none;
+    -moz-border-image: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background: url("/Content/Images/bg_menu.gif") repeat scroll 0 -25px #FFFFFF;
+    border-color: #C9CFAC;
+    border-style: solid;
+    border-width: 0 0 0 4px;
+    color: #000000;
+    cursor: pointer;
+    font-style: inherit;
+    font-weight: bold;
+    padding: 6px 0 6px 5px;
+}
+
+
+
+#esq ul li
+{
+    padding: 2px 0;
+}
+
+
+#menu1 div.menu-toggle
+{
+    color: #26370A;
+    display: block;
+}
+
+#menu1 div.menu-toggle div
+{
+    text-decoration: none;
+    voice-family: inherit;
+}
+
+#menu1 div.menu-toggle div.link
+{
+    background: url("/Content/Images/bg_menu.gif") repeat scroll 0 0 #FFFFFF;
+    color: #26370A;
+    display: block;
+    padding: 6px 0 6px 5px;
+    text-shadow: 1px 1px 0 #FFFFFF;
+}
+
+#menu1 div.menu-toggle div.section, #menu div.menu-toggle div.current
+{
+    -moz-border-bottom-colors: none;
+    -moz-border-image: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background: url("/Content/Images/bg_menu.gif") repeat scroll 0 -25px #FFFFFF;
+    border-color: #C9CFAC;
+    border-style: solid;
+    border-width: 0 0 0 4px;
+    color: #000000;
+    cursor: pointer;
+    font-style: inherit;
+    font-weight: bold;
+    padding: 6px 0 6px 5px;
+}
+
+#menu1 div.menu-toggle div.section, #menu div.menu-toggle div.current a:hover
+{
+    -moz-border-bottom-colors: none;
+    -moz-border-image: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background: url("/Content/Images/bg_menu.gif") repeat scroll 0 -25px #FFFFFF;
+    border-color: #C9CFAC;
+    border-style: solid;
+    border-width: 0 0 0 4px;
+    color: #000000;
+    cursor: pointer;
+    font-style: inherit;
+    font-weight: bold;
+    padding: 6px 0 6px 5px;
+}
+
+#menu1 .menu-content
+{
+    background: none repeat scroll 0 0 #FFFFFF;
+    display: none;
+    margin: 0;
+    padding: 0 0 0 8px;
+    text-decoration: none;
+}
+
+#menu1 .menu-content li
+{
+    list-style-type: none;
+    margin: 0;
+}
+
+#menu1 .menu-content li
+{
+    -moz-border-bottom-colors: none;
+    -moz-border-image: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    border-color: #EAEDDA;
+    border-style: solid;
+    border-width: 0 1px 1px;
+}
+
+#menu1 .menu-content li a
+{
+    background: none repeat scroll 0 0 #F7FAE9;
+    color: #696969;
+    display: block;
+    font: 10px Verdana,Arial,Helvetica,sans-serif;
+    padding: 5px 0 5px 10px;
+    text-decoration: none;
+}
+
+#menu1 .menu-content a:hover
+{
+    background: -moz-linear-gradient(right center , #EEEED1, #FFFFFF) repeat scroll 0 0 transparent;
+    color: #000000;
+}
+
+#menu1 .menu-content li.section a, #menu .menu-content li.current a
+{
+    background: url("/Content/Images/ico_menu.gif") no-repeat scroll left center #F1F4E4;
+    color: #47493A;
+    font-weight: bold;
+    padding-left: 15px;
+}
+
+/*Fim do Menu esquerdo
+-------------------------------------------------------*/
+
+a, a:link, a:visited, a:active {
+    color: #2e6e9e;
+    outline: 0 none;
+    text-decoration: none;
+}
+.botao {
+    background-image: url("/Content/Images/bgLetras.gif");
+    border: 1px solid #d4d4d4;
+}
+
+.botaoOk
+{
+    background-image: url("/Content/Images/bgLetras.gif");
+    border: 1px solid #d4d4d4;
+    width: 25px;
+}
+
+/* Estilos para formulários
+----------------------------------------------------------------------------------aaa-------*/
+
+#formulario
+{
+    background-color: #e1e2e3;
+}
+
+div#pesquisa {
+    margin: 20px auto 0;
+    position: relative;
+    width: 960px;
+}
+div#pesquisa * {
+    line-height: normal;
+}
+h1, h2, h3, h4, h5, h6 {
+    color: #111;
+}
+div#pesquisa > div, div#pesquisa > div > * {
+    position: relative;
+}
+div#pesquisa input, div#pesquisa select {
+    color: #385260 !important;
+    font-family: Tahoma,Verdana,Arial,sans-serif;
+    line-height: normal;
+}
+div#pesquisa label {
+    font-size: 11px;
+}
+div#pesquisa > div.formulario {
+    background: none repeat scroll 0 0 #dfe8ed;
+}
+div#pesquisa > div.formulario > div {
+    background: none repeat scroll 0 0 #dfe8ed;
+}
+div#pesquisa > div.formulario > div.recuo {
+    padding: 0 10px 0 135px;
+}
+div#pesquisa > div.formulario > div > input[type="text"] > input[type="password"] {
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 1em;
+}
+div#pesquisa > div.formulario > div.botoes {
+    padding: 0 10px 10px;
+}
+div#pesquisa > div.formulario > div.botoes > input[type="button"] {
+    background-repeat: no-repeat;
+    border: 0 solid transparent;
+    height: 22px;
+}
+div#pesquisa > div.formulario > div.botoes > input.ajuda {
+    background-image: url("/Content/Images/botaoAjuda.gif");
+    width: 52px;
+}
+div#pesquisa > div.formulario > div.botoes > input.limpar {
+    background-image: url("/Content/Images/botaoLimpar.gif");
+    width: 52px;
+}
+div#pesquisa > div.formulario > div.botoes > input.pesquisar {
+    background-image: url("/Content/Images/botaoPesquisar.gif");
+    margin: 0 10px 0 359px;
+    width: 67px;
+}
+div#pesquisa > div.formulario > div.divPesqLivre {
+    margin: 14px 0 0;
+    padding: 10px 10px 0;
+}
+div#pesquisa > div.formulario > div.divPesqLivre > label.recuo {
+    display: inline-block;
+    margin: 0 5px 0 0;
+    text-align: right;
+    width: 120px;
+}
+div#pesquisa > div.formulario > div.divPesqLivre > input[type="text"] > input[type="password"] {
+    width: 684px;
+}
+div#pesquisa > div.formulario > div.contato {
+    background: none repeat scroll 0 0 #ffffff;
+    padding: 10px;
+    position: absolute;
+    right: 10px;
+    top: 58px;
+    width: 118px;
+}
+div#pesquisa > div.formulario > div.contato > span {
+    font-weight: bold;
+}
+div#pesquisa > div.formulario > div.filtro {
+    padding: 0 10px 5px;
+}
+div#pesquisa > div.formulario > div.filtro.tribunal.multiplo {
+    padding: 0 10px 15px;
+}
+div#pesquisa > div.formulario > div.filtro.recuo {
+    padding: 0 10px 10px 120px;
+}
+div#pesquisa > div.formulario > div.filtro > input[type="text"] > input[type="password"] {
+    width: 170px;
+}
+div.filtro > select {
+    width: 176px;
+}
+div.filtro.processo > select, div.filtro.legislacao > select, div.filtro.orgao > select {
+    width: 417px;
+}
+div#pesquisa > div.formulario > div.filtro > label {
+    margin: 0 5px;
+}
+div#pesquisa > div.formulario > div.filtro > label.recuo {
+    display: inline-block;
+    margin: 0 5px 0 0;
+    text-align: right;
+    vertical-align: top;
+    width: 105px;
+}
+div#pesquisa > div.formulario > div.filtro > label[for="acordaos"], div#pesquisa > div.formulario > div.filtro > label[for="sumulas"], div#pesquisa > div.formulario > div.filtro > label[for="arguicoes"] {
+    display: inline-block;
+    width: 48px;
+}
+div#pesquisa > div.formulario > div.filtro > label[for="acordaosjef"], div#pesquisa > div.formulario > div.filtro > label[for="sumulasjef"] {
+    display: inline-block;
+    width: 70px;
+}
+div#pesquisa > div.formulario > div.filtro > select {
+    font-size: 1em;
+}
+div#pesquisa > div.formulario > div.filtro.data > input[type="text"] > input[type="password"] {
+    width: 76px;
+}
+div#pesquisa > div.formulario > div.filtro.data > select {
+    margin: 0 0 0 5px;
+    width: 235px;
+}
+div#pesquisa > div.formulario > div.filtro.magistrado > select {
+    margin: 0 5px;
+}
+div#pesquisa > div.formulario > div.filtro.legislacao > input {
+    margin-top: 5px;
+}
+div#pesquisa > div.formulario > div.filtro.legislacao > input.tipo {
+    margin-right: 5px;
+    width: 30px;
+}
+div#pesquisa > div.formulario > div.filtro.legislacao > input.adicionar {
+    background-image: url("/Content/Images/btnMais.gif");
+    background-repeat: no-repeat;
+    border: 0 solid transparent;
+    height: 21px;
+    width: 17px;
+}
+div#pesquisa > div.formulario > div.filtro.magistrado > div#divSelecao > input.adicionar {
+    background-image: url("/Content/Images/btnMais.gif");
+    background-repeat: no-repeat;
+    border: 0 solid transparent;
+    height: 21px;
+    width: 17px;
+}
+div#pesquisa > div.formulario > div.filtro.classe > div#divSelect > input.adicionar {
+    background-image: url("/Content/Images/btnMais.gif");
+    background-repeat: no-repeat;
+    border: 0 solid transparent;
+    height: 21px;
+    width: 17px;
+}
+div#pesquisa > div.formulario > div.filtro.orgao > div#divSelect1 > input.adicionar {
+    background-image: url("/Content/Images/btnMais.gif");
+    background-repeat: no-repeat;
+    border: 0 solid transparent;
+    height: 21px;
+    width: 17px;
+}
+div#pesquisa > div.formulario > div.filtro.legislacao > select.tipo {
+    margin-right: 5px;
+    width: 54px;
+}
+div#pesquisa > div.formulario > div.filtro.orgao.multiplo > span.opcoes, div#pesquisa > div.formulario > div.filtro.tribunal.multiplo > span.opcoes, div#pesquisa > div.formulario > div.filtro.magistrado > span.opcoes {
+    display: inline-block;
+    width: 576px;
+}
+div#pesquisa > div.formulario > div.filtro.magistrado > div.magistrados > span.opcoes {
+    padding: 3px 0 10px 110px;
+}
+div#pesquisa > div.formulario > div.filtro.magistrado > div#divTexto {
+    padding: 0 0 5px;
+}
+
+div#pesquisa > div.formulario > div.filtro.classe > div#divTexto1 {
+    padding: 0 0 5px;
+}
+
+div#pesquisa > div.formulario > div.filtro.orgao > div#divTexto2 {
+    padding: 0 0 5px;
+}
+
+div#pesquisa > div.formulario > div.filtro > div.magistrados > label.recuo {
+    display: inline-block;
+    margin: 0 5px 0 0;
+    text-align: right;
+    vertical-align: top;
+    width: 105px;
+}
+
+div#pesquisa > div.formulario > div.filtro > div.classes > label.recuo {
+    display: inline-block;
+    margin: 0 5px 0 0;
+    text-align: right;
+    vertical-align: top;
+    width: 105px;
+}
+
+div#pesquisa > div.formulario > div.filtro > div.orgaos > label.recuo {
+    display: inline-block;
+    margin: 0 5px 0 0;
+    text-align: right;
+    vertical-align: top;
+    width: 105px;
+}
+
+
+div#pesquisa > div.formulario > div.filtro.orgao.multiplo > span.opcoes > span, div#pesquisa > div.formulario > div.filtro.tribunal.multiplo > span.opcoes > span, div#pesquisa > div.formulario > div.filtro.magistrado > span.opcoes > span {
+    display: inline-block;
+    width: 280px;
+}
+div#pesquisa > div.formulario > div.filtro.magistrado > div.magistrados > span.opcoes > span {
+    width: 180px;
+}
+div#pesquisa > div.formulario > div.filtro.orgao.multiplo > span.opcoes input, div#pesquisa > div.formulario > div.filtro.tribunal.multiplo > span.opcoes input {
+    position: relative;
+    vertical-align: top;
+}
+div#pesquisa > div.formulario > div.filtro.orgao.multiplo > span.opcoes input.ativo, div#pesquisa > div.formulario > div.filtro.tribunal.multiplo > span.opcoes input.ativo {
+    z-index: 20;
+}
+div#pesquisa > div.formulario > div.filtro.orgao.multiplo > span.opcoes > span > label, div#pesquisa > div.formulario > div.filtro.tribunal.multiplo > span.opcoes > span > label, div#pesquisa > div.formulario > div.filtro.magistrado > span.opcoes > span > label {
+    display: inline-block;
+    margin: 0 5px;
+    max-width: 250px;
+    overflow: hidden;
+    position: relative;
+    vertical-align: top;
+}
+div#pesquisa > div.formulario > div.filtro.orgao.multiplo > span.opcoes label.ativo, div#pesquisa > div.formulario > div.filtro.tribunal.multiplo > span.opcoes label.ativo {
+    margin: -1px 5px 0;
+    overflow: visible;
+    z-index: 10;
+}
+div#pesquisa > div.formulario > div.filtro.orgao.multiplo > span.opcoes label.ativo > span, div#pesquisa > div.formulario > div.filtro.tribunal.multiplo > span.opcoes label.ativo > span {
+    background: none repeat scroll 0 0 #f2f6f8;
+    border-radius: 10px;
+    left: -25px;
+    padding: 1px 10px 1px 25px;
+    position: relative;
+}
+div#pesquisa > div.formulario > div.filtro.orgao.multiplo > span.opcoes label.ativo > span.reticencias, div#pesquisa > div.formulario > div.filtro.tribunal.multiplo > span.opcoes label.ativo > span.reticencias {
+    display: none;
+}
+div#pesquisa > div.formulario > div.filtro.orgao.multiplo > span.opcoes label > span.reticencias, div#pesquisa > div.formulario > div.filtro.tribunal.multiplo > span.opcoes label > span.reticencias {
+    background: none repeat scroll 0 0 #dfe8ed;
+    position: absolute;
+    right: 0;
+    z-index: 0;
+}
+div#pesquisa > div.formulario > div.operadores {
+    padding: 0 10px;
+}
+div#pesquisa > div.formulario > div.operadores > a {
+    display: inline-block;
+    padding: 4px;
+}
+div#pesquisa > div.formulario > div.subtitulo {
+    padding: 12px 10px 15px;
+}
+
+
+div#pesquisa > div.selecao > a.voltar {
+    display: inline-block;
+    margin: 14px 0 0;
+}
+div#pesquisa > div.selecao > div.lista {
+    margin: 20px 0 0;
+}
+div#pesquisa > div.selecao > div.lista > div {
+    border-bottom: 1px solid #dfe8ed;
+    padding: 5px 0;
+}
+div#pesquisa > div.selecao > div.lista > div > span.carregando > img {
+    margin: 0 0 -1px;
+}
+div#pesquisa > div.selecao > div.lista > div > span.nome {
+    display: inline-block;
+    text-transform: uppercase;
+    width: 180px;
+}
+div#pesquisa > div.selecao > input.ajuda {
+    background-image: url("/Content/Images/botaoAjuda.gif");
+    background-repeat: no-repeat;
+    border: 0 solid transparent;
+    height: 22px;
+    margin: 20px 0 0 508px;
+    width: 52px;
+}
+div#pesquisa > h1.titulo {
+    border-bottom: 3px solid #0f2a57;
+    float: none;
+    font-family: Arial,sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    height: auto;
+    padding: 0;
+    width: auto;
+}
+div#pesquisa > h1.titulo > a {
+    background-repeat: no-repeat;
+    height: 0;
+    overflow: hidden;
+    padding: 20px 0 0;
+    position: absolute;
+    top: -5px;
+    width: 20px;
+}
+div#pesquisa > h1.titulo > a.imprimir {
+    background-image: url("/Content/Images/menuBotao.gif");
+    background-position: -464px 0;
+    right: 2px;
+}
+div#pesquisa > h1.titulo > a.pesquisa {
+    background-image: url("/Content/Images/bt_pesquisa.gif");
+    padding: 22px 0 0;
+    right: 28px;
+    width: 22px;
+}
+div#pesquisa > h1.titulo > a.voltar {
+    background-image: url("/Content/Images/botaoVoltar.png");
+    padding: 22px 0 0;
+    right: 54px;
+    width: 67px;
+}
+
+label.recuo {
+    display: inline-block;
+    margin: 0 5px 0 0;
+    text-align: right;
+    width: 120px;
+}
+
+label.formulario {
+    display: inline-block;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    text-align: right;
+    width: 180px;
+}
+/*
+input[type="text"] {
+    width: 647px;
+}*/
+
+
+
+.mostrar
+{
+    display:normal;
+}
+
+.ocultar
+{
+    display:none;
+}
+
+/* Estilos para WebGrid
+---------------------------------------------------------------------------------------- */
+.grade
+{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    margin: 0px;
+    border-collapse: separate;
+    width: 80%;
+}
+
+.header
+{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    background-color: #E8E8E8;
+    font-weight: bold;
+    color: black;
+    text-align: left;
+}
+
+.grade th, .grade td
+{
+    background-color: #ffffff;
+    border: 1px solid solid #569cd0;
+    padding: 5px;
+    text-align: left;
+}
+
+.alt
+{
+    background-color: #E8E8E8;
+    color: #000;
+}
+
+
+/* Estilos para validação
+-----------------------------------------------------------------------------------------*/
+
+
+/* Estilos para lista resumida e completa
+-----------------------------------------------------------------------------------------*/
+#formColecao
+{
+    background-color: #e1e2e3;
+}
+
+div#listaColecao {
+    margin: 20px auto 0;
+    position: relative;
+    width: 960px;
+}
+div#listaColecao * {
+    line-height: normal;
+    /*display: inherit;*/
+}
+h1, h2, h3, h4, h5, h6 {
+    color: #111;
+}
+div#listaColecao > div, div#listaColecao > div > * {
+    position: relative;
+}
+div#listaColecao input, div#listaColecao select {
+    color: #385260 !important;
+    font-family: Tahoma,Verdana,Arial,sans-serif;
+    line-height: normal;
+}
+div#listaColecao label {
+    font-size: 11px;
+}
+div#listaColecao > div.formColecao {
+    background: none repeat scroll 0 0 #dfe8ed;
+}
+div#listaColecao > div.formColecao > div {
+    background: none repeat scroll 0 0 #dfe8ed;
+}
+div#listaColecao > div.formColecao > div.recuo {
+    padding: 0 10px 0 135px;
+}
+div#listaColecao > div.formColecao > div > input[type="text"] > input[type="password"]{
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 1em;
+}
+div#listaColecao > div.formColecao > div.botoes {
+    padding: 0 10px 10px;
+}
+div#listaColecao > div.formColecao > div.botoes > input[type="button"] {
+    background-repeat: no-repeat;
+    border: 0 solid transparent;
+    height: 22px;
+}
+div#listaColecao > div.formColecao > div.botoes > input.ajuda {
+    background-image: url("/Content/Images/botaoAjuda.gif");
+    width: 52px;
+}
+div#listaColecao > div.formColecao > div.botoes > input.limpar {
+    background-image: url("/Content/Images/botaoLimpar.gif");
+    width: 52px;
+}
+div#listaColecao > div.formColecao > div.botoes > input.listaColecaor {
+    background-image: url("/Content/Images/botaoPesquisar.gif");
+    margin: 0 10px 0 359px;
+    width: 67px;
+}
+div#listaColecao > div.formColecao > div.divPesqLivre {
+    margin: 14px 0 0;
+    padding: 10px 10px 0;
+}
+div#listaColecao > div.formColecao > div.divPesqLivre > label.recuo {
+    display: inline-block;
+    margin: 0 5px 0 0;
+    text-align: right;
+    width: 120px;
+}
+div#listaColecao > div.formColecao > div.divPesqLivre > input[type="text"] > input[type="password"] {
+    width: 684px;
+}
+div#listaColecao > div.formColecao > div.contato {
+    background: none repeat scroll 0 0 #ffffff;
+    padding: 10px;
+    position: absolute;
+    right: 10px;
+    top: 58px;
+    width: 118px;
+}
+div#listaColecao > div.formColecao > div.contato > span {
+    font-weight: bold;
+}
+div#listaColecao > div.formColecao > div.filtro {
+    padding: 0 10px 5px;
+}
+div#listaColecao > div.formColecao > div.filtro.tribunal.multiplo {
+    padding: 0 10px 15px;
+}
+div#listaColecao > div.formColecao > div.filtro.recuo {
+    padding: 0 10px 10px 120px;
+}
+div#listaColecao > div.formColecao > div.filtro > input[type="text"] > input[type="password"] {
+    width: 170px;
+}
+div.filtro > select {
+    width: 176px;
+}
+div.filtro.processo > select, div.filtro.legislacao > select, div.filtro.orgao > select {
+    width: 417px;
+}
+div#listaColecao > div.formColecao > div.filtro > label {
+    margin: 0 5px;
+}
+div#listaColecao > div.formColecao > div.filtro > label.recuo {
+    display: inline-block;
+    margin: 0 5px 0 0;
+    text-align: right;
+    vertical-align: top;
+    width: 105px;
+}
+div#listaColecao > div.formColecao > div.filtro > label[for="acordaos"], div#listaColecao > div.formColecao > div.filtro > label[for="sumulas"], div#listaColecao > div.formColecao > div.filtro > label[for="arguicoes"] {
+    display: inline-block;
+    width: 48px;
+}
+div#listaColecao > div.formColecao > div.filtro > label[for="acordaosjef"], div#listaColecao > div.formColecao > div.filtro > label[for="sumulasjef"] {
+    display: inline-block;
+    width: 70px;
+}
+div#listaColecao > div.formColecao > div.filtro > select {
+    font-size: 1em;
+}
+div#listaColecao > div.formColecao > div.filtro.data > input[type="text"] > input[type="password"] {
+    width: 76px;
+}
+div#listaColecao > div.formColecao > div.filtro.data > select {
+    margin: 0 0 0 5px;
+    width: 235px;
+}
+div#listaColecao > div.formColecao > div.filtro.magistrado > select {
+    margin: 0 5px;
+}
+div#listaColecao > div.formColecao > div.filtro.legislacao > input {
+    margin-top: 5px;
+}
+div#listaColecao > div.formColecao > div.filtro.legislacao > input.tipo {
+    margin-right: 5px;
+    width: 30px;
+}
+div#listaColecao > div.formColecao > div.filtro.legislacao > input.adicionar {
+    background-image: url("/Content/Images/btnMais.gif");
+    background-repeat: no-repeat;
+    border: 0 solid transparent;
+    height: 21px;
+    width: 17px;
+}
+div#listaColecao > div.formColecao > div.filtro.magistrado > div#divSelecao > input.adicionar {
+    background-image: url("/Content/Images/btnMais.gif");
+    background-repeat: no-repeat;
+    border: 0 solid transparent;
+    height: 21px;
+    width: 17px;
+}
+div#listaColecao > div.formColecao > div.filtro.classe > div#divSelect > input.adicionar {
+    background-image: url("/Content/Images/btnMais.gif");
+    background-repeat: no-repeat;
+    border: 0 solid transparent;
+    height: 21px;
+    width: 17px;
+}
+div#listaColecao > div.formColecao > div.filtro.orgao > div#divSelect1 > input.adicionar {
+    background-image: url("/Content/Images/btnMais.gif");
+    background-repeat: no-repeat;
+    border: 0 solid transparent;
+    height: 21px;
+    width: 17px;
+}
+div#listaColecao > div.formColecao > div.filtro.legislacao > select.tipo {
+    margin-right: 5px;
+    width: 54px;
+}
+div#listaColecao > div.formColecao > div.filtro.orgao.multiplo > span.opcoes, div#listaColecao > div.formColecao > div.filtro.tribunal.multiplo > span.opcoes, div#listaColecao > div.formColecao > div.filtro.magistrado > span.opcoes {
+    display: inline-block;
+    width: 576px;
+}
+div#listaColecao > div.formColecao > div.filtro.magistrado > div.magistrados > span.opcoes {
+    padding: 3px 0 10px 110px;
+}
+div#listaColecao > div.formColecao > div.filtro.magistrado > div#divTexto {
+    padding: 0 0 5px;
+}
+div#listaColecao > div.formColecao > div.filtro > div.magistrados > label.recuo {
+    display: inline-block;
+    margin: 0 5px 0 0;
+    text-align: right;
+    vertical-align: top;
+    width: 105px;
+}
+div#listaColecao > div.formColecao > div.filtro.orgao.multiplo > span.opcoes > span, div#listaColecao > div.formColecao > div.filtro.tribunal.multiplo > span.opcoes > span, div#listaColecao > div.formColecao > div.filtro.magistrado > span.opcoes > span {
+    display: inline-block;
+    width: 280px;
+}
+div#listaColecao > div.formColecao > div.filtro.magistrado > div.magistrados > span.opcoes > span {
+    width: 180px;
+}
+div#listaColecao > div.formColecao > div.filtro.orgao.multiplo > span.opcoes input, div#listaColecao > div.formColecao > div.filtro.tribunal.multiplo > span.opcoes input {
+    position: relative;
+    vertical-align: top;
+}
+div#listaColecao > div.formColecao > div.filtro.orgao.multiplo > span.opcoes input.ativo, div#listaColecao > div.formColecao > div.filtro.tribunal.multiplo > span.opcoes input.ativo {
+    z-index: 20;
+}
+div#listaColecao > div.formColecao > div.filtro.orgao.multiplo > span.opcoes > span > label, div#listaColecao > div.formColecao > div.filtro.tribunal.multiplo > span.opcoes > span > label, div#listaColecao > div.formColecao > div.filtro.magistrado > span.opcoes > span > label {
+    display: inline-block;
+    margin: 0 5px;
+    max-width: 250px;
+    overflow: hidden;
+    position: relative;
+    vertical-align: top;
+}
+div#listaColecao > div.formColecao > div.filtro.orgao.multiplo > span.opcoes label.ativo, div#listaColecao > div.formColecao > div.filtro.tribunal.multiplo > span.opcoes label.ativo {
+    margin: -1px 5px 0;
+    overflow: visible;
+    z-index: 10;
+}
+div#listaColecao > div.formColecao > div.filtro.orgao.multiplo > span.opcoes label.ativo > span, div#listaColecao > div.formColecao > div.filtro.tribunal.multiplo > span.opcoes label.ativo > span {
+    background: none repeat scroll 0 0 #f2f6f8;
+    border-radius: 10px;
+    left: -25px;
+    padding: 1px 10px 1px 25px;
+    position: relative;
+}
+div#listaColecao > div.formColecao > div.filtro.orgao.multiplo > span.opcoes label.ativo > span.reticencias, div#listaColecao > div.formColecao > div.filtro.tribunal.multiplo > span.opcoes label.ativo > span.reticencias {
+    display: none;
+}
+div#listaColecao > div.formColecao > div.filtro.orgao.multiplo > span.opcoes label > span.reticencias, div#listaColecao > div.formColecao > div.filtro.tribunal.multiplo > span.opcoes label > span.reticencias {
+    background: none repeat scroll 0 0 #dfe8ed;
+    position: absolute;
+    right: 0;
+    z-index: 0;
+}
+div#listaColecao > div.formColecao > div.operadores {
+    padding: 0 10px;
+}
+div#listaColecao > div.formColecao > div.operadores > a {
+    display: inline-block;
+    padding: 4px;
+}
+div#listaColecao > div.formColecao > div.subtitulo {
+    padding: 12px 10px 15px;
+}
+
+
+div#listaColecao > div.selecao > a.voltar {
+    display: inline-block;
+    margin: 14px 0 0;
+}
+div#listaColecao > div.selecao > div.lista {
+    margin: 20px 0 0;
+}
+div#listaColecao > div.selecao > div.lista > div {
+    border-bottom: 1px solid #dfe8ed;
+    padding: 5px 0;
+}
+div#listaColecao > div.selecao > div.lista > div > span.carregando > img {
+    margin: 0 0 -1px;
+}
+div#listaColecao > div.selecao > div.lista > div > span.nome {
+    display: inline-block;
+    text-transform: uppercase;
+    width: 180px;
+}
+div#listaColecao > div.selecao > input.ajuda {
+    background-image: url("/Content/Images/botaoAjuda.gif");
+    background-repeat: no-repeat;
+    border: 0 solid transparent;
+    height: 22px;
+    margin: 20px 0 0 508px;
+    width: 52px;
+}
+div#listaColecao > h1.titulo {
+    border-bottom: 3px solid #0f2a57;
+    float: none;
+    font-family: Arial,sans-serif;
+    font-size: 16px;
+    font-weight: bold;
+    height: auto;
+    padding: 0;
+    width: auto;
+}
+div#listaColecao > h1.titulo > a {
+    background-repeat: no-repeat;
+    height: 0;
+    overflow: hidden;
+    padding: 20px 0 0;
+    position: absolute;
+    top: -5px;
+    width: 20px;
+}
+div#listaColecao > h1.titulo > a.imprimir {
+    background-image: url("/Content/Images/menuBotao.gif");
+    background-position: -464px 0;
+    right: 2px;
+}
+div#listaColecao > h1.titulo > a.listaColecao {
+    background-image: url("/Content/Images/bt_pesquisa.gif");
+    padding: 22px 0 0;
+    right: 28px;
+    width: 22px;
+}
+div#listaColecao > h1.titulo > a.voltar {
+    background-image: url("/Content/Images/botaoVoltar.png");
+    padding: 22px 0 0;
+    right: 54px;
+    width: 67px;
+}
+
+
+/* Estilos para lista completa
+--------------------------------------------------------------------------------------------------*/
+
+table.tabeladocumentos {
+    width: 700px;
+}
+
+th
+{
+    background-color: #d7edf8;
+    color: #507ca4;
+    font-size: 10pt;
+    text-align: center;
+}
+
+.noprint {
+    display: block;
+}
+
+#semFormatacao{
+    background-color: #ededed;
+    border: 2px solid #6699cc;
+    position: absolute;
+    visibility: hidden;
+    z-index: 1;
+}
+
+.docTitulo {
+    background-color: #eeeeee;
+    color: #2465a4;
+    font-family: 'Trebuchet MS',Arial;
+    font-size: 10pt;
+    font-weight: bold;
+}
+
+
+.docTexto {
+    font-family: Verdana;
+    font-size: 10pt;
+    padding-left: 20px;
+}
+
+.formColecao {
+
+    width:100%;
+}
+
+
+fieldset p
+{
+    margin: 2px 12px 10px 10px;
+}
+
+fieldset.login label, fieldset.register label, fieldset.changePassword label
+{
+    display: block;
+}
+
+#login
+{
+    margin: 20px auto auto auto;
+    width: 450px;
+    font: 0.8em Verdana,Geneva,sans-serif;
+    color: #000000;
+    padding: 0;
+}
+
+
+#login legend
+{
+    font-weight: 600;
+    padding: 2px 4px 8px;
+    text-shadow: 3px 3px 3px #CCCCCC;
+    color: #607099;
+    font-style: italic;
+}
+
+#login fieldset
+{
+    margin: 1em 0;
+    padding: 1em;
+    border: 1px solid #CCC;
+    -moz-border-radius: 10px 10px 10px 10px;
+    -webkit-border-radius: 10px 10px 10px 10px;
+}
+
+
+#login fieldset p
+{
+    margin: 2px 12px 10px 10px;
+}
+
+#login fieldset label
+{
+    font: 10px Verdana, Arial, Helvetica, sans-serif;
+    width: 100px;
+    display: inline-block;
+    text-align: left;
+}
+
+#login fieldset label.inline
+{
+    display: inline;
+}
+
+#login input[type="submit"], input[type="button"], input.ie6submit, input.ie6button
+{
+    font: 10px Verdana, Arial, Helvetica, sans-serif;
+}
+
+#login input
+{
+    _width: 300px;
+    _border: 1px solid #CCC;
+    -moz-border-radius: 4px 4px 4px 4px;
+    -moz-box-shadow: 1px 1px 3px #E0E0E0;
+    -webkit-border-radius: 4px 4px 4px 4px;
+    -webkit-box-shadow: 1px 1px 3px #E0E0E0;
+}
+
+
+/* Estilo para lista resumida
+-------------------------------------------------------------------------------------------*/
+#divAreaBlocoExterno
+{
+    background-color: #ffffff;
+    border-color: #c8ccd8;
+    border-style: solid;
+    /*border-width: 0 1px 1px;*/
+    /*margin: 0 10px 10px;*/
+    border-width: 1px;
+    margin: 0;
+    padding: 0 10px 10px 12px;
+    position: relative;
+}
+
+#divListaResumida
+{
+    /*background-color: #ffffff;
+    border-color: #c8ccd8;
+    border-style: solid;*/
+    /*border-width: 0 1px 1px;*/
+    /*margin: 0 10px 10px;*/
+    padding: 0 10px 10px 12px;
+    position: relative;
+}
+
+#divGrid
+{
+    border: 1px solid #569cd0;
+    font-family: verdana;
+    font-size: 10pt;
+    color: #595656;
+    font-weight: normal;
+    text-decoration: none;
+    display: inline-block;
+}
+
+#divEsquerda
+{
+    float: left;
+    padding: 1px 1px 1px 5px;
+}
+
+#divCentral
+{
+    float: left;
+    padding: 1px 1px 1px 8px;
+    width: 36%;
+}
+
+#divDireita
+{
+    padding: 1px 1px 1px 1px;
+    width: 60%;
+    float: left;
+}
+
+em
+{
+    background-color: yellow;
+}
+
+.links {
+
+display:inline-block;
+}
+
+div#pesquisa > div.formulario > div#cabecalhoResultado {
+    margin: 14px 0 0;
+    padding: 10px 10px 0;
+}
+
+div#pesquisa > div.formulario > div#corpoResultado {
+    padding: 10px 10px 50px 100px;
+}
+
+.negrito
+{
+    font-weight: bold;    
+}
+
+#divInputPesqLivre
+{
+    float: none;
+    padding: 5px 3px 3px 1px;
+}
+
+
+div#pesquisa > div.formulario > div.divPesqLivre > div.subtitulo {
+    /*padding: 12px 10px 15px;*/
+}
+
+#txtPesqLivre
+{
+    width: 100%;
+}
+
+.Erro {
+    border-color: red !important;
+}
+
+.mensagemErro {
+    font-weight: bold;
+    color: red;
+
+}
+  

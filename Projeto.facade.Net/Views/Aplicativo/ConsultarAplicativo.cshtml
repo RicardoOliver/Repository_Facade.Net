@@ -1,0 +1,46 @@
+﻿@{
+    ViewBag.Title = "ConsutarAplicativo";
+    ViewBag.Cabecalho = "Consultar  Aplicativo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model Crud_Facade_Modelos.Web.ViewModel.AlterarOuSalvarAplicativoView
+@{var auxiliar = Model;}
+@if (Model == null)
+{
+    auxiliar = new Crud_Facade_Modelo.Web.ViewModel.AlterarOuSalvarAplicativoView();
+    auxiliar.ActionDestinos = "/Profissional/ConsutarAplicativo";
+}
+
+<!Doctype html>
+<html aria-atomic="false">
+<head>
+    <title>Consulta Aplicativo</title>
+    <script src="~/Scripts/TabelaDinamica.js"></script>
+    <script>
+        $(document).ready(function () {
+            document.getElementById("CodigoAplicativo").focus();
+        });
+    </script>
+</head>
+<body>
+    <div id="GridRetorno" class="mensagemErro">
+        @ViewBag.Mensagem
+    </div>
+    <form action="/Aplicativo/AlterarAplicativo" method="post">
+        <div id="campos"></div>
+        <div>
+            <br />
+            <br />
+            <p>
+                <label for="CodigoUsuario" class="formulario">
+                    <b>Código do Aplicativo:</b>
+                </label>
+                <input id="CodigoAplicativo" name="CodigoAplicativo" value="@auxiliar.NomeAplicacao" type="text" maxlength="10" /> &nbsp;
+                <input type="submit" value=" Consultar " />
+            </p>
+        </div>
+
+    </form>
+</body>
+</html>
+

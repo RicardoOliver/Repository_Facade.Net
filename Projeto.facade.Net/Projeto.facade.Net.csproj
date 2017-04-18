@@ -44,6 +44,34 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.AI.Agent.Intercept, Version=2.0.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.2.0.6\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.DependencyCollector, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.DependencyCollector.2.2.0\lib\net45\Microsoft.AI.DependencyCollector.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.PerfCounterCollector, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.PerfCounterCollector.2.2.0\lib\net45\Microsoft.AI.PerfCounterCollector.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.ServerTelemetryChannel, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.TelemetryChannel.2.2.0\lib\net45\Microsoft.AI.ServerTelemetryChannel.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.Web, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.Web.2.2.0\lib\net45\Microsoft.AI.Web.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AI.WindowsServer, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.WindowsServer.2.2.0\lib\net45\Microsoft.AI.WindowsServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ApplicationInsights, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.2.2.0\lib\net45\Microsoft.ApplicationInsights.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
       <Private>True</Private>
@@ -58,6 +86,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
@@ -120,7 +149,13 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AplicativoController.cs" />
+    <Compile Include="Controllers\AutorizacaoController.cs" />
+    <Compile Include="Controllers\CommonsController.cs" />
+    <Compile Include="Controllers\ContaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ProfissionalController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -129,12 +164,20 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Css\Site.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\bg_menu.gif" />
+    <Content Include="Images\copiar.png" />
+    <Content Include="Images\Lixeira.png" />
+    <Content Include="Images\Lupa.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="ApplicationInsights.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -143,10 +186,40 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\Login.js" />
+    <Content Include="Scripts\Menu.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\Navegacao.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\TabelaDinamica.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="themes\base\Images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="themes\base\Images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="themes\base\Images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="themes\base\Images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="themes\base\Images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="themes\base\Images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="themes\base\Images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="themes\base\Images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="themes\base\Images\ui-icons_222222_256x240.png" />
+    <Content Include="themes\base\Images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="themes\base\Images\ui-icons_454545_256x240.png" />
+    <Content Include="themes\base\Images\ui-icons_888888_256x240.png" />
+    <Content Include="themes\base\Images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="themes\base\minified\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="themes\base\minified\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="themes\base\minified\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="themes\base\minified\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="themes\base\minified\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="themes\base\minified\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="themes\base\minified\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="themes\base\minified\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="themes\base\minified\images\ui-icons_222222_256x240.png" />
+    <Content Include="themes\base\minified\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="themes\base\minified\images\ui-icons_454545_256x240.png" />
+    <Content Include="themes\base\minified\images\ui-icons_888888_256x240.png" />
+    <Content Include="themes\base\minified\images\ui-icons_cd0a0a_256x240.png" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -161,18 +234,40 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Aplicativo\CadastrarAplicativo.cshtml" />
+    <Content Include="Views\Aplicativo\ConsultarAplicativo.cshtml" />
+    <Content Include="Views\Autorizacao\AutorizarUsuario.cshtml" />
+    <Content Include="Views\Profissional\CadastrarUsuario.cshtml" />
+    <Content Include="Views\Profissional\ConsultarUsuario.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+    <Folder Include="Views\Conta\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
-    <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Crud_Facade_Acesso.Dados.Web\Crud_Facade_Acesso.Dados.Web.csproj">
+      <Project>{b9fdb230-50f0-4a8e-8ddb-0b8325969c65}</Project>
+      <Name>Crud_Facade_Acesso.Dados.Web</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Crud_Facade_Acesso.Servicos.Web\Crud_Facade_Acesso.Servicos.Web.csproj">
+      <Project>{87a868c9-98ee-4003-b5fa-a6b649460249}</Project>
+      <Name>Crud_Facade_Acesso.Servicos.Web</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Crud_Facade_Modelos.Web\Crud_Facade_Modelos.Web.csproj">
+      <Project>{dd041f0a-7143-4643-bf65-8d124a7e5d7c}</Project>
+      <Name>Crud_Facade_Modelos.Web</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

@@ -1,0 +1,46 @@
+﻿@{
+    ViewBag.Title = "ConsutarUsuario";
+    ViewBag.Cabecalho = "Consultar  Usuario";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model Crud_Facade_Modelos.Web.ViewModel.AlterarOuSalvarUsuarioView
+@{var auxiliar = Model;}
+@if (Model == null)
+{
+    auxiliar = new Crud_Facade_Modelos.Web.ViewModel.AlterarOuSalvarUsuarioView();
+    auxiliar.ActionDestino = "/Profissional/ConsutarUsuario";
+}
+
+<!Doctype html>
+<html aria-atomic="false">
+<head>
+    <title>Consulta Usuário</title>
+    <script src="~/Scripts/TabelaDinamica.js"></script>
+    <script>
+        $(document).ready(function () {
+            document.getElementById("CodigoUsuario").focus();
+        });
+    </script>
+</head>
+<body>
+    <div id="GridRetorno" class="mensagemErro">
+        @ViewBag.Mensagem
+    </div>
+    <form action="/Usuario/ConsultarUsuario" method="post">
+        <div id="campos"></div>
+        <div>
+            <br />
+            <br />
+            <p>
+                <label for="CodigoUsuario" class="formulario">
+                    <b>Código do usuário:</b>
+                </label>
+                <input id="CodigoUsuario" name="CodigoUsuario" value="@auxiliar.CodigoUsuario" type="text" maxlength="10" /> &nbsp;
+                <input type="submit" value=" Consultar " />
+            </p>
+        </div>
+
+    </form>
+</body>
+</html>
+

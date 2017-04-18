@@ -1,0 +1,434 @@
+﻿@{
+    ViewBag.Title = "Autorizarusuario";
+    ViewBag.Cabecalho = "Autorizar Usuário";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@model Crud_Facade_Modelos.Web.ViewModel.AutorizarUsuarioViewModel
+@{var auxiliar = Model;}
+@if (Model == null)
+{
+    auxiliar = new Crud_Facade_Modelo.Web.ViewModel.AutorizarUsuarioViewModel();
+}
+
+<html>
+<head>
+    <title>Autorizar Usuário</title>
+    <script src="~/Scripts/TabelaDinamica.js"></script>
+    @{bool preencheOrgaos = false; string orgaoEscolhido = ""; }
+    @if (auxiliar.UsuarioLiberacao.Perfil == Crud_Facade_Modelo.Web.Perfil.GERENTE)
+    {
+        preencheOrgaos = true;
+        <script>
+            var orgaos = {};
+
+        </script>
+    }
+    <script>
+
+
+
+        $(document).ready(function () {
+            document.getElementById("CodigoUsuario").focus();
+
+            RegistrarTabela('GridRotinas');
+
+            @{string indexador = "@index"; }
+
+
+            document.getElementById('NomeRotinas[0]').innerHTML.replace('selected', '');
+
+            var htmlDados = document.getElementById('DadosTabela').innerHTML.
+                replace(/\[0\]/g, '[@indexador]');
+
+            var htmlDados = htmlDados.replace(/, 0\)/g, ', @indexador)');
+
+
+
+            adicionarCampo('GridRotinas', htmlDados,
+                'NomeRotinas[@indexador] ' +
+                'PermissoesIncluir[@indexador] PermissoesExcluir[@indexador] PermissoesAlterar[@indexador]');
+
+            DefinirLinhasExtras('GridRotinas', 0, 1);
+
+            definirFoco('GridRotinas', 'NomeRotinas[@indexador]');
+            DefinirCampoDeQuantidade('GridRotinas', 'QtdeRotinas');
+
+            document.getElementById('CodigoUsuario').focus();
+
+
+        });
+        /*$('#GridRotinas').ready(function(){
+            alert('teste');
+        });*/
+
+
+        function atualizaOrgao()
+        {
+            console.log(orgaos);
+            @{string orgao = auxiliar.PermiteInformarOrgao == true ? "" : auxiliar.OrgaosRetorno[0]; }
+            var tamanho = document.getElementById('GridRotinas').rows.length - 2;
+            document.getElementById('NomeRotinas[' + (tamanho) + ']').value = "";
+        }
+
+        function incluiRotinaNoOrgao(orgaoInformado, nomeRotina, Permissoes) {
+            if (orgaos[orgaoInformado] == null)
+                orgaos[orgaoInformado] = new Array();
+            var objRotina = new Object()
+            objRotina.Rotina = nomeRotina;
+            objRotina.Permissoes = Permissoes;
+            orgaos[orgaoInformado].push(objRotina);
+        }
+
+        function pegaAutorizacoesOrgaos(orgaoInformado){
+            var tamanho = document.getElementById('GridRotinas').rows.length - 2;
+            adicionarLinha('GridRotinas');
+            for (var i = 0; i < tamanho + 1; i++) {
+                remover('GridRotinas', 0);
+            }
+
+            //'NomeRotinas[@indexador] ' +
+            //    'PermissoesIncluir[@indexador] PermissoesExcluir[@indexador] PermissoesAlterar[@indexador]'
+
+            preencheAutorizacao(0, orgaos[orgaoInformado][0].Rotina, orgaos[orgaoInformado][0].Permissoes);
+            document.getElementById('NomeOrgao').value = orgaoInformado;
+
+            for (var i = 1; i < orgaos[orgaoInformado].length; i++){
+                adicionarLinha('GridRotinas');
+                preencheAutorizacao(i, orgaos[orgaoInformado][i].Rotina, orgaos[orgaoInformado][i].Permissoes);
+            }
+
+            document.getElementById('CodigoUsuario').focus(); // para o scroll subir novamente
+            document.getElementById('NomeOrgao').focus();
+
+        }
+
+        function preencheAutorizacao(indice, rotina, PermissoesRotina){
+            document.getElementById('NomeRotinas[' + indice + ']').value = rotina;
+            document.getElementById('PermissoesIncluir[' + indice + ']').value = PermissoesRotina.Incluir;
+            document.getElementById('PermissoesAlterar[' + indice + ']').value = PermissoesRotina.Alterar;
+            document.getElementById('PermissoesExcluir[' + indice + ']').value = PermissoesRotina.Excluir;
+        }
+
+
+    </script>
+</head>
+<body>
+
+    <div id="GridRetorno" class="mensagemErro">
+        @{
+            string mensagem = "";
+            if (ViewBag.Mensagem != null)
+            {
+                mensagem = ViewBag.Mensagem;
+            }
+        }
+        @Html.Raw(mensagem.Replace("\n", "<br>"))
+    </div>
+
+    <form id="frmAutoriza" action="/Autorizacao/AutorizarUsuario" method="post">
+
+
+
+        <div id="campos"></div>
+
+        <h1>Autorizar Usuário</h1>
+
+        <p>
+            <label for="UsuarioCopia" class="formulario"><b>Usuario a Copiar *:</b></label>
+            <input type="text" id="UsuarioCopia" name="UsuarioCopia" maxlength="10"
+                   value="@auxiliar.UsuarioCopia" />
+            <button type="submit"
+                    onclick="document.getElementById('frmAutoriza').action = '/Autorizacao/CopiarAutorizacao';">
+                <img src="~/Content/Images/copiar.png" style="height: 20px; width: 20px" />
+            </button>
+
+        </p>
+
+        <br />
+
+        <p>
+            <label for="CodigoUsuario" class="formulario"><b>Usuario *:</b></label>
+            <input type="text" id="CodigoUsuario" name="NomeUsuario" maxlength="10"
+                   value="@auxiliar.NomeUsuario" />
+            <button type="submit"
+                    onclick="document.getElementById('frmAutoriza').action = '/Autorizacao/ConsultarUsuario';">
+                <img src="~/Content/Images/Lupa.png" style="height: 20px; width: 20px" />
+            </button>
+
+        </p>
+
+        @{
+            string desabilita = "";
+            if (auxiliar.PermiteInformarOrgao == false)
+            {
+                desabilita = "disabled";
+            }
+        }
+
+        <table id="GridRotinas" style="width: 100%">
+
+            <thead>
+            </thead>
+            <tbody>
+
+                @{int qtdeAplicacoes = 1; bool criaTabela = true; string id0 = "id=DadosTabela"; }
+                @{bool exibiu = false;}
+                @if (auxiliar.NomeRotinas != null && auxiliar.NomeRotinas.Count > 0)
+                {
+                    qtdeAplicacoes = auxiliar.NomeRotinas.Count;
+                    criaTabela = false;
+
+                    int indiceAuxiliar = 0; bool quebra = false;
+                    if (auxiliar.DescricaoOrgaos[0] != null &&
+                        auxiliar.NomeRotinas != null && auxiliar.NomeRotinas.Count > 0 &&
+                        auxiliar.NomeRotinas[0] != "")
+                    {
+                        <text>Usuário pesquisado:
+                            <b>@auxiliar.NomeUsuario</b></text>
+                        <br />
+                        exibiu = true;
+                        orgaoEscolhido = auxiliar.OrgaosRetorno[0];
+                        while (!quebra)
+                        {
+
+                            <text>
+                                <font color="red">
+                                    Autorizações no órgão <b>@auxiliar.OrgaosRetorno[indiceAuxiliar]</b>
+                                    (@auxiliar.DescricaoOrgaos[indiceAuxiliar]):
+                                </font></text>
+
+                            <input type="button" value=" Escolhe Orgão "
+                                   onclick="pegaAutorizacoesOrgaos('@auxiliar.OrgaosRetorno[indiceAuxiliar]');" />
+                                <br />
+
+                            for (int i = indiceAuxiliar; i < auxiliar.NomeRotinas.Count; i++)
+                            {
+                                string Rotina = auxiliar.NomeRotinas[i];
+                                string PermissaoIncluir = auxiliar.PermissoesIncluir[i],
+                                       PermissaoExcluir = auxiliar.PermissoesExcluir[i],
+                                       PermissaoAlterar = auxiliar.PermissoesAlterar[i];
+                                string orgaoAtual = auxiliar.OrgaosRetorno[indiceAuxiliar];
+
+                                /*<text><b>@auxiliar.NomeRotinas[i]</b></text><br />*/
+
+                                if (preencheOrgaos)
+                                {
+                                    <script>
+
+                                        $(document).ready(function(){
+                                            var permissoes = new Object();
+                                            permissoes.Incluir = '@PermissaoIncluir';
+                                            permissoes.Excluir = '@PermissaoExcluir';
+                                            permissoes.Alterar = '@PermissaoAlterar';
+                                            incluiRotinaNoOrgao('@orgaoAtual', '@Html.Raw(Rotina)', permissoes);
+                                        });
+
+                                    </script>
+                                }
+                                if (i == auxiliar.NomeRotinas.Count - 1)
+                                {
+                                    quebra = true;
+                                }
+                                else if (auxiliar.OrgaosRetorno[i] != auxiliar.OrgaosRetorno[i + 1])
+                                {
+                                    indiceAuxiliar = i + 1;
+                                    break;
+                                } // else
+                            } // for
+                        } // while
+                        <br />
+                    } // if
+                }
+
+
+
+
+                @{
+                    if (exibiu && auxiliar.UsuarioLiberacao.Perfil == Crud_Facade_Modelos.Web.Perfil.AUTORIZADOR)
+                    {
+                        auxiliar.NomeRotinas = (from string s in auxiliar.NomeRotinas
+                                                where auxiliar.RotinasDisponíveis.Contains(s)
+                                                select s).ToList();
+                    }
+                    else if (exibiu && auxiliar.UsuarioLiberacao.Perfil == Crud_Facade_Modelos.Web.Perfil.GERENTE)
+                    {
+                        auxiliar.NomeOrgao = orgaoEscolhido;
+                        for (int i = 0; i < auxiliar.NomeRotinas.Count; i++)
+                        {
+                            if (auxiliar.OrgaosRetorno[i] != orgaoEscolhido)
+                            {
+                                auxiliar.NomeRotinas.RemoveAt(i);
+                                i--;
+                            }
+                        }
+                    }
+
+                    IList<string> apps = auxiliar.NomeRotinas;
+                }
+                @if (criaTabela)
+                {
+                    apps = new List<string>();
+                    apps.Add("");
+
+                    auxiliar.NomeOrgao = "";
+
+                    auxiliar.PermissoesIncluir = new List<string>();
+                    auxiliar.PermissoesIncluir.Add("");
+
+                    auxiliar.PermissoesAlterar = new List<string>();
+                    auxiliar.PermissoesAlterar.Add("");
+
+                    auxiliar.PermissoesExcluir = new List<string>();
+                    auxiliar.PermissoesExcluir.Add("");
+                }
+
+                <p>
+                    <label for="NomeOrgao" class="formulario"><b>Código ou Sigla do Órgao *:</b></label>
+                    <input id="NomeOrgao" name="NomeOrgao" type="text"
+                           value="@auxiliar.NomeOrgao" @desabilita />
+                </p>
+
+
+                @for (int i = 0; i < apps.Count; i++)
+                {
+                    <tr>
+                        <td @id0>
+
+
+
+
+                            <input type="hidden" id="QtdeRotinas" name="QtdeRotinas" value="@qtdeAplicacoes" />
+
+
+                            @{string check = ""; id0 = "";}
+                            @{string idCampo = "NomeRotinas[" + i + "]", nameCampo = "NomeRotinas[" + i + "]";}
+                            <p>
+                                <label for="NomeRotinas[@i]" class="formulario"><b>Rotina Autorizado *:</b></label>
+                                <select id="@idCampo" name="@nameCampo">
+                                    @if (apps[i] == "")
+                                    {
+                                        check = "selected";
+                                    }
+                                    <option value="" @check>Selecione: </option>
+
+                                    @foreach (string s in auxiliar.RotinasDisponíveis)
+                                    {
+                                        check = "";
+                                        if (s == apps[i])
+                                        {
+                                            check = "selected";
+                                        }
+
+                                        <option value="@s" @check>@s</option>
+                                    }
+                                </select>
+                                <span style="text-align: end">
+                                    <button onclick="remover('GridRotinas', @i); return false;">
+                                        <img src="~/Content/Images/Lixeira.png" style="height: 20px; width: 20px;" />
+                                    </button>
+                                </span>
+                            </p>
+
+                            <table style="margin-left: 190px;">
+                                <tr>
+                                    <th>
+                                        <label for="PermissoesIncluir[@i]" class="formulario">
+                                            <b>Autoriza Incluir *?</b>
+                                        </label>
+                                    </th>
+                                    <th>
+                                        <label for="PermissoesExcluir[@i]" class="formulario">
+                                            <b>Autoriza Excluir *?</b>
+                                        </label>
+                                    </th>
+                                    <th>
+                                        <label for="PermissoesAlterar[@i]" class="formulario">
+                                            <b>Autoriza Alterar *?</b>
+                                        </label>
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <select id="PermissoesIncluir[@i]" name="PermissoesIncluir[@i]" style="width: 100%">
+                                            @{string selecionaSim = "", selecionaNao = "";}
+                                            @if (auxiliar.PermissoesIncluir[i] == "S")
+                                            {
+                                                selecionaSim = "selected";
+                                            }
+                                            else
+                                            {
+                                                selecionaNao = "selected";
+                                            }
+                                            <option value="S" @selecionaSim>SIM</option>
+                                            <option value="N" @selecionaNao>NÃO</option>
+                                        </select>
+                                    </td>
+
+                                    <td>
+                                        <select id="PermissoesExcluir[@i]" name="PermissoesExcluir[@i]" style="width: 100%">
+                                            @{selecionaNao = selecionaSim = "";}
+                                            @if (auxiliar.PermissoesExcluir[i] == "S")
+                                            {
+                                                selecionaSim = "selected";
+                                            }
+                                            else
+                                            {
+                                                selecionaNao = "selected";
+                                            }
+                                            <option value="S" @selecionaSim>SIM</option>
+                                            <option value="N" @selecionaNao>NÃO</option>
+                                        </select>
+                                    </td>
+
+                                    <td>
+                                        <select id="PermissoesAlterar[@i]" name="PermissoesAlterar[@i]" style="width: 100%">
+                                            @{selecionaNao = selecionaSim = "";}
+                                            @if (auxiliar.PermissoesAlterar[i] == "S")
+                                            {
+                                                selecionaSim = "selected";
+                                            }
+                                            else
+                                            {
+                                                selecionaNao = "selected";
+                                            }
+                                            <option value="S" @selecionaSim>SIM</option>
+                                            <option value="N" @selecionaNao>NÃO</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                            </table>
+                            <br />
+                        </td>
+                    </tr>
+                                                }
+                <tr>
+                    <td colspan="3" style="text-align: end">
+                        <input type="button" style="height: 25px;"
+                               onclick="adicionarLinha('GridRotinas'); atualizaOrgao();" value=" ADICIONAR AUTORIZAÇÃO " />
+                    </td>
+                </tr>
+
+
+
+
+
+
+
+                <!--fieldset>
+                    <legend>Órgãos vinculados ao usuário</legend>
+                </fieldset-->
+
+            </tbody>
+        </table>
+
+        <input type="submit" value=" Salvar " name="Salvar" />
+        <input type="submit" value=" Alterar " name="Alterar" />
+        <input type="submit" value=" Inativar autorizações do órgão " name="Inativar" />
+
+
+    </form>
+</body>
+
+</html>
